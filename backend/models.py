@@ -99,6 +99,9 @@ class SensorReading(Base):
     temperature: Mapped[float | None] = mapped_column(Float, nullable=True)
 
     h2s_level: Mapped[float | None] = mapped_column(Float, nullable=True)
+    rpm: Mapped[float | None] = mapped_column(Float, nullable=True)
+
+    operational_hours: Mapped[float | None] = mapped_column(Float, nullable=True)
 
     pipe = relationship(
         "Pipe",
@@ -213,4 +216,66 @@ class Prediction(Base):
     pipe = relationship(
         "Pipe",
         back_populates="predictions"
+    )
+class TrainingData(Base):
+    """
+    Stores historical dataset records used for ML model training.
+    """
+
+    __tablename__ = "training_data"
+
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True,
+        index=True
+    )
+
+    pressure: Mapped[float | None] = mapped_column(Float, nullable=True)
+
+    flow_rate: Mapped[float | None] = mapped_column(Float, nullable=True)
+
+    temperature: Mapped[float | None] = mapped_column(Float, nullable=True)
+
+    vibration: Mapped[float | None] = mapped_column(Float, nullable=True)
+
+    rpm: Mapped[float | None] = mapped_column(Float, nullable=True)
+
+    operational_hours: Mapped[float | None] = mapped_column(
+        Float,
+        nullable=True
+    )
+
+    pipe_code: Mapped[str] = mapped_column(
+        String(50),
+        nullable=False
+    )
+
+    zone: Mapped[str] = mapped_column(
+        String(50),
+        nullable=False
+    )
+
+    block: Mapped[str] = mapped_column(
+        String(50),
+        nullable=False
+    )
+
+    location_code: Mapped[str] = mapped_column(
+        String(100),
+        nullable=False
+    )
+
+    latitude: Mapped[float] = mapped_column(
+        Float,
+        nullable=False
+    )
+
+    longitude: Mapped[float] = mapped_column(
+        Float,
+        nullable=False
+    )
+
+    leakage_flag: Mapped[bool] = mapped_column(
+        Boolean,
+        nullable=False
     )

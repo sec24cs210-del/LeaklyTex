@@ -13,3 +13,26 @@ __pycache__/
 
 # macOS
 .DS_Store
+
+# LeaklyTex local environment
+backend/.venv312/
+.venv312/
+
+# Backup files - do not publish
+*.bak
+*.backup
+*.before_prediction
+*-backup.py
+
+# Frontend dependencies and generated build
+frontend/node_modules/
+frontend/dist/
+
+# Frontend backup copies
+*.before_*
+*.backup
+*.cors-backup
+
+# Python local virtual environments
+.venv/
+backend/.venv312/
